@@ -1,19 +1,26 @@
-package org.acme;
+package character;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import item.item;
+import job.job;
+import player.player;
 
 import java.util.List;
 
 @Entity
 public class character {
-    @Id
+@Id
     private  long id;
     private String name;
     private String username;
     private int level;
-    private player plaer;
+    @ManyToOne
+    private player player;
+    @OneToMany
     private List<job> jobs;
+    @OneToMany
     private List<item> items;
+
+
 }

@@ -1,11 +1,11 @@
-package org.acme;
+package job;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
 public class job {
-    @Id
+@Id
     private long id;
     private String name;
 

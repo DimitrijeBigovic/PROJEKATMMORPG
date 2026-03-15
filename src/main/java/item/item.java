@@ -1,12 +1,15 @@
-package org.acme;
+package item;
+
 
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class player {
-    @Id
+public class item {
+@Id
     private long id;
-    private String username;
+    private String name;
+
+
 }
