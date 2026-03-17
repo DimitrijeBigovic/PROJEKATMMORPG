@@ -3,6 +3,7 @@ package model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +15,8 @@ public class player {
     @SequenceGenerator(name = "player_seq", sequenceName = "player_seq", allocationSize = 1)
     private Long id;
     private String username;
+    @Transient
+    private List<character> characterList;
 
 
     public Long getId() {
@@ -31,6 +34,7 @@ public class player {
     public void setUsername(String username) {
         this.username = username;
     }
+
 
     @Override
     public boolean equals(Object obj) {
