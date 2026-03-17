@@ -5,7 +5,7 @@ import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import model.player;
+import model.Player;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ public class playerService {
     EntityManager em;
 
     @Transactional
-    public player createPlayer(player player) {
+    public Player createPlayer(Player player) {
         return em.merge(player);
     }
 
 
-    public List<player> getAllPlayers() {
-        return em.createNamedQuery(player.GET_ALL_PLAYERS, player.class).getResultList();
+    public List<Player> getAllPlayers() {
+        return em.createNamedQuery(Player.GET_ALL_PLAYERS, Player.class).getResultList();
     }
 
 

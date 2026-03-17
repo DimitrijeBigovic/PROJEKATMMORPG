@@ -5,10 +5,9 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import model.player;
+import model.Player;
 import service.playerService;
 
-import java.awt.*;
 import java.util.List;
 
 @Path("/player")
@@ -16,14 +15,14 @@ public class playerResource {
 
 
     @Inject
-    public playerService playerService;
+    public playerService PlayerService;
 
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/addPlayer")
-    public boolean addPlayer(player player) {
-        playerService.createPlayer(player);
+    public boolean addPlayer(Player player) {
+        PlayerService.createPlayer(player);
         return true;
     }
 
@@ -32,8 +31,8 @@ public class playerResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAllPlayers")
     public Response getAllPlayers() {
-        List<player> players = playerService.getAllPlayers();
-        return Response.ok().entity(players).build();
+        List<Player> Players = PlayerService.getAllPlayers();
+        return Response.ok().entity(Players).build();
     }
 
 }

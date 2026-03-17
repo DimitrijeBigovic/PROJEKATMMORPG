@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@NamedQuery(name = player.GET_ALL_PLAYERS, query = "SELECT p from player p")
-public class player {
+@NamedQuery(name = Player.GET_ALL_PLAYERS, query = "SELECT p from Player p")
+public class Player {
     public static final String GET_ALL_PLAYERS = "GetAllPlayers";
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_seq")
@@ -16,7 +16,7 @@ public class player {
     private Long id;
     private String username;
     @Transient
-    private List<character> characterList;
+    private List<Character> characterList;
 
 
     public Long getId() {
@@ -35,12 +35,20 @@ public class player {
         this.username = username;
     }
 
+    public Player() {
+
+    }
 
     @Override
     public boolean equals(Object obj) {
         if (obj == null || getClass() != obj.getClass()) return false;
-        player player = (player) obj;
+        Player player = (Player) obj;
         return Objects.equals(username, player.username);
 
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(username);
     }
 }
