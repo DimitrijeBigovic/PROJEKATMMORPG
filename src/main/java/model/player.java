@@ -14,15 +14,7 @@ public class player {
     @SequenceGenerator(name = "player_seq", sequenceName = "player_seq", allocationSize = 1)
     private Long id;
     private String username;
-    private String surname;
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 
     public Long getId() {
         return id;
@@ -44,7 +36,7 @@ public class player {
     public boolean equals(Object obj) {
         if (obj == null || getClass() != obj.getClass()) return false;
         player player = (player) obj;
-        return Objects.equals(id, player.id);
+        return Objects.equals(username, player.username);
 
     }
 }

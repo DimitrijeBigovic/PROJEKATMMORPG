@@ -16,15 +16,15 @@ public class playerResource {
 
 
     @Inject
-    private playerService playerService;
+    public playerService playerService;
 
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/addPlayer")
-    public String addPlayer(player player) {
+    public boolean addPlayer(player player) {
         playerService.createPlayer(player);
-        return "ELLO Friend";
+        return true;
     }
 
 

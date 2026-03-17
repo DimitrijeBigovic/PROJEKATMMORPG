@@ -20,6 +20,7 @@ public class playerService {
         return em.merge(player);
     }
 
+
     public List<player> getAllPlayers() {
         return em.createNamedQuery(player.GET_ALL_PLAYERS, player.class).getResultList();
     }
