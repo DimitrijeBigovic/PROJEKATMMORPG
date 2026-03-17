@@ -1,12 +1,12 @@
-package player;
-
+package model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class player {
+public class job {
 @Id
     private long id;
-    private String username;
+    private String name;
+
 }

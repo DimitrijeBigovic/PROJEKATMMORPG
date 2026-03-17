@@ -1,10 +1,7 @@
-package character;
+package model;
 
 
 import jakarta.persistence.*;
-import item.item;
-import job.job;
-import player.player;
 
 import java.util.List;
 
