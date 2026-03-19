@@ -1,6 +1,7 @@
 package resource;
 
 
+import exception.PlayerException;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -21,9 +22,13 @@ public class playerResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/addPlayer")
-    public boolean addPlayer(Player player) {
-        PlayerService.createPlayer(player);
-        return true;
+    public Response addPlayer(Player player) {
+        try {
+            PlayerService.createPlayer(player);
+        } catch (PlayerException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
+        return Response.ok().entity(player).build();
     }
 
 

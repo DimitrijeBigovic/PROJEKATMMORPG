@@ -1,6 +1,7 @@
 package service;
 
 
+import exception.PlayerException;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -16,7 +17,13 @@ public class playerService {
     EntityManager em;
 
     @Transactional
-    public Player createPlayer(Player player) {
+    public Player createPlayer(Player player) throws PlayerException {
+if (player ==null){
+    throw new PlayerException("Player is null ");
+}
+if (player.getUsername()==null){
+    throw new PlayerException("Player username is null ");
+}
         return em.merge(player);
     }
 
