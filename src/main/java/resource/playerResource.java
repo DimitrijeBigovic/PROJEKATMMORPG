@@ -6,6 +6,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import model.GameCharacter;
 import model.Player;
 import service.playerService;
 
@@ -38,6 +39,22 @@ public class playerResource {
     public Response getAllPlayers() {
         List<Player> Players = PlayerService.getAllPlayers();
         return Response.ok().entity(Players).build();
+    }
+
+    @GET
+    @Path("/getPlayersByUsername")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPlayersByUsername(@QueryParam("username") String username) {
+        List<Player> Players = PlayerService.getAllPlayersByUsername(username);
+        return Response.ok().entity(Players).build();
+    }
+
+    @GET
+    @Path("/getCharactersByPlayerId")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCharactersByPlayerId(@QueryParam("id") Long id) {
+        List<GameCharacter> characters = PlayerService.getCharactersByPlayerId(id);
+        return Response.ok().entity(characters).build();
     }
 
 }
