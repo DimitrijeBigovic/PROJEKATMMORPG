@@ -18,7 +18,7 @@ public class Player {
     @SequenceGenerator(name = "player_seq", sequenceName = "player_seq", allocationSize = 1)
     private Long id;
     private String username;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id")
     private List<GameCharacter> Characters;
 

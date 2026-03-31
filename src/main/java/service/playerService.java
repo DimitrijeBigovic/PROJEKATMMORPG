@@ -39,9 +39,5 @@ public class playerService {
         return players;
     }
 
-    public List<GameCharacter> getCharactersByPlayerId(Long id) {
 
-        List<GameCharacter> characters = em.createNamedQuery(GameCharacter.GET_ALL_CHARACTERS_FOR_PLAYER_ID, GameCharacter.class).setParameter("idP", id).getResultList();
-        return characters;
-    }
 }

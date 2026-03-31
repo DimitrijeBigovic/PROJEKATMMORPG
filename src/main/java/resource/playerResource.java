@@ -49,12 +49,6 @@ public class playerResource {
         return Response.ok().entity(Players).build();
     }
 
-    @GET
-    @Path("/getCharactersByPlayerId")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getCharactersByPlayerId(@QueryParam("id") Long id) {
-        List<GameCharacter> characters = PlayerService.getCharactersByPlayerId(id);
-        return Response.ok().entity(characters).build();
-    }
+
 
 }

@@ -4,6 +4,8 @@ package model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -22,10 +24,19 @@ public class GameCharacter {
     @JsonIgnore
     private Player player;
 
+
+    @ManyToMany
+    @JoinTable(
+            name = "gamecharacter_items",
+            joinColumns = @JoinColumn(name = "character_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
+    private List<Item> items = new ArrayList<>();
+
     public GameCharacter() {
     }
 
-    public GameCharacter( String name, String surname, int level) {
+    public GameCharacter(String name, String surname, int level) {
 
         this.name = name;
         this.surname = surname;
@@ -70,6 +81,14 @@ public class GameCharacter {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 
     @Override
