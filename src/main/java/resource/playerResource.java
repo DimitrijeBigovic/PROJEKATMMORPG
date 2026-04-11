@@ -2,6 +2,7 @@ package resource;
 
 
 import exception.PlayerException;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -23,6 +24,7 @@ public class playerResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/addPlayer")
+    @RolesAllowed("admin")
     public Response addPlayer(Player player) {
         try {
             PlayerService.createPlayer(player);

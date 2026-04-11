@@ -2,6 +2,7 @@ package resource;
 
 
 import exception.GameCharacterException;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -32,6 +33,7 @@ public class GameCharactersResource {
     }
     @GET
     @Path("/getCharactersByPlayerId")
+    @RolesAllowed("admin")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCharactersByPlayerId(@QueryParam("id") Long id) {
         List<GameCharacter> characters = gameCharacterService.getCharactersByPlayerId(id);
