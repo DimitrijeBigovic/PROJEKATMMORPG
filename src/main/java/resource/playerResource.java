@@ -2,6 +2,7 @@ package resource;
 
 
 import exception.PlayerException;
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -24,7 +25,7 @@ public class playerResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/addPlayer")
-    @RolesAllowed("admin")
+//    @RolesAllowed("admin")
     public Response addPlayer(Player player) {
         try {
             PlayerService.createPlayer(player);
@@ -38,11 +39,19 @@ public class playerResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getAllPlayers")
+//    @PermitAll
     public Response getAllPlayers() {
         List<Player> Players = PlayerService.getAllPlayers();
         return Response.ok().entity(Players).build();
     }
 
+    @GET
+    @Path("/getPlayerByID")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPlayerByID(@QueryParam("id") Long id){
+        Player player = PlayerService.getPlayerById(id);
+        return Response.ok().entity(player).build();
+    }
     @GET
     @Path("/getPlayersByUsername")
     @Produces(MediaType.APPLICATION_JSON)
