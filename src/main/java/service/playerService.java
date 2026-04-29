@@ -38,7 +38,7 @@ public class playerService {
     }
 
     public List<Player> getAllPlayersByUsername(String username) {
-        List<Player> players = em.createNamedQuery(Player.GET_PLAYER_BY_USERNAME, Player.class).setParameter("usernameP", username).getResultList();
+        List<Player> players = em.createNamedQuery(Player.GET_PLAYER_BY_USERNAME, Player.class).setParameter("username", username).getResultList();
         return players;
     }
 

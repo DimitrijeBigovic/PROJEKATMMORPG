@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @NamedQuery(name = Player.GET_ALL_PLAYERS, query = "SELECT p from Player p")
-@NamedQuery(name = Player.GET_PLAYER_BY_USERNAME, query = "SELECT p from Player p where p.username=:usernameP")
+@NamedQuery(name = Player.GET_PLAYER_BY_USERNAME, query = "SELECT p from Player p where p.username=:username")
 @NamedQuery(name = Player.GET_PLAYER_BY_ID, query = "SELECT p from Player p WHERE p.id=:id")
 public class Player {
     public static final String GET_ALL_PLAYERS = "GetAllPlayers";
@@ -27,6 +27,21 @@ public class Player {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "player")
     List<TimeZone> timeZones= new ArrayList<TimeZone>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "player")
+    private List<CurrencyResponce> Currencies;
+
+    public Player(){
+
+    }
+
+    public List<CurrencyResponce> getCurrencies() {
+        return Currencies;
+    }
+
+    public void setCurrencies(List<CurrencyResponce> currencies) {
+        Currencies = currencies;
+    }
 
     public Long getId() {
         return id;

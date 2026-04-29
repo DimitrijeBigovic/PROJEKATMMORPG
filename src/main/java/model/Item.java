@@ -21,7 +21,7 @@ public class Item {
     private String effect;
     private int quantity;
     @ManyToMany(mappedBy = "items")
-@JsonIgnore
+    @JsonIgnore
     private List<GameCharacter> characters = new ArrayList<>();
 
 
@@ -75,6 +75,13 @@ public class Item {
 
     public void setCharacters(List<GameCharacter> characters) {
         this.characters = characters;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
 
