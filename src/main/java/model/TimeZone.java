@@ -2,17 +2,21 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jdk.jfr.Name;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import java.util.Date;
 
 @Entity
+@NamedQuery(name= TimeZone.GetALLtimeZONES, query = "SELECT t from TimeZone t")
 public class TimeZone {
+    public static final String GetALLtimeZONES="GetAllTimeZones";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String timeZone;
     private String currentTime;
+    private int seconds;
     private String date;
     private String dayOfWeek;
     private boolean dstActive;
@@ -22,7 +26,7 @@ public class TimeZone {
     @JsonIgnore
     private Player player;
 
-    public TimeZone(Long id, String timeZone, String currentTime, String date, String dayOfWeek, boolean dstActive, Player player) {
+    public TimeZone(Long id, String timeZone, String currentTime,int seconds, String date, String dayOfWeek, boolean dstActive, Player player) {
         this.id = id;
         this.timeZone = timeZone;
         this.currentTime = currentTime;
@@ -30,11 +34,20 @@ public class TimeZone {
         this.dayOfWeek = dayOfWeek;
         this.dstActive = dstActive;
         this.player = player;
+        this.seconds = seconds;
     }
 
     public TimeZone() {
 
 
+    }
+
+    public int getSeconds() {
+        return seconds;
+    }
+
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
     }
 
     public Long getId() {

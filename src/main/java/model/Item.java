@@ -21,7 +21,7 @@ public class Item {
     private String effect;
     private int quantity;
     @ManyToMany(mappedBy = "items")
-@JsonIgnore
+    @JsonIgnore
     private List<GameCharacter> characters = new ArrayList<>();
 
 

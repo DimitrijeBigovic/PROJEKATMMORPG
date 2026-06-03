@@ -39,6 +39,7 @@ public class TimeService {
         zone.setDayOfWeek(response.getDayOfWeek());
         zone.setDstActive(response.dstActive);
         zone.setPlayer(player);
+        zone.setSeconds(response.getSeconds());
         player.getTimeZones().add(zone);
         return zone;
 
