@@ -76,5 +76,12 @@ public class Item {
     public void setCharacters(List<GameCharacter> characters) {
         this.characters = characters;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
 

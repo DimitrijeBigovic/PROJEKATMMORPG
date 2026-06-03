@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@NamedQuery(name = GameCharacter.GET_ALL_CHARACTERS_FOR_PLAYER_ID, query = "SELECT gc FROM GameCharacter gc WHERE gc.player.id=:idP")
+@NamedQuery(name = GameCharacter.GET_ALL_CHARACTERS_FOR_PLAYER_ID, query = "SELECT gc.name, gc.surname,gc.level FROM GameCharacter gc WHERE gc.player.id=:idP")
 public class GameCharacter {
     public static final String GET_ALL_CHARACTERS_FOR_PLAYER_ID = "getAllCharactersForPlayerId";
     @Id
