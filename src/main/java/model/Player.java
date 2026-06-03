@@ -1,9 +1,8 @@
 package model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
+import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,36 @@ public class Player {
     private List<GameCharacter> Characters;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "player")
-    List<TimeZone> timeZones= new ArrayList<TimeZone>();
+    List<TimeZone> timeZones = new ArrayList<TimeZone>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id")
+    List<LocationZone> locationZones = new ArrayList<LocationZone>();
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "Player_UploadedFile",
+            joinColumns = @JoinColumn(name = "player_id"),
+            inverseJoinColumns = @JoinColumn(name = "uploadedFile_id"))
+    private List<UploadedFile> uploadedFiles = new ArrayList<>();
+
+
+    @Transient
+    private String FilePath;
+
+    public List<UploadedFile> getUploadedFiles() {
+        return uploadedFiles;
+    }
+
+    public void setUploadedFiles(List<UploadedFile> uploadedFiles) {
+        this.uploadedFiles = uploadedFiles;
+    }
+
+    public String getFilePath() {
+        return FilePath;
+    }
+
+    public void setFilePath(String filePath) {
+        FilePath = filePath;
+    }
 
     public Long getId() {
         return id;
@@ -60,12 +88,16 @@ public class Player {
         this.timeZones = timeZones;
     }
 
+    public List<LocationZone> getLocationZones() {
+        return locationZones;
+    }
+
+    public void setLocationZones(List<LocationZone> locationZones) {
+        this.locationZones = locationZones;
+    }
+
     @Override
     public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", Characters=" + Characters +
-                '}';
+        return "Player{" + "id=" + id + ", username='" + username + '\'' + ", Characters=" + Characters + '}';
     }
 }
